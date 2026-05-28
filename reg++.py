@@ -17,10 +17,10 @@ def registration(): # создание учётной записи
  while True:
    print("Создайте учётную запись")
    username = input('Введите ваше имя: ')
+   password = input('Придумайте пароль: ')
    if username in users:
     print("Пользователь с таким именем уже существует!") 
     continue
-   password = input('Придумайте пароль: ')
    print("Подтвердите корректность данных: ")
    print("Имя:", username + '; ', "Пароль:", password)
    correct = input("Введите «1», если всё верно, или «2», если хотите изменить: ") 
@@ -40,6 +40,7 @@ def login(): # авторизация
   print(" - - Войдите в аккаунт - - ")
   print('[1] - Назад')
   username1 = input("Введите имя: ")
+  if username1 == '1': menu()
   if username1 not in users:
    print('Пользователя с таким именем не существет!')
    continue
@@ -48,7 +49,6 @@ def login(): # авторизация
      print("Вход в аккаунт совершён успешно")
      status[0] = 'active'
      return username1
-  elif username1 == '1': continue
   else:
    print("Неверный логин или пароль. повторите попытку") 
    continue
@@ -66,7 +66,7 @@ def add_email(): # предложение привязки почты к акк�
    email = input("Введите адрес электронной почты: ")
    if "@" not in email and "." not in email:
     print("Введите корректный email!")
-    continue
+    add_email
    elif '@' and '.' in email:
     print("Электронная почта успешно привязана!")
     users[username1]['email'] = email
