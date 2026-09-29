@@ -1,8 +1,10 @@
+
+
 # База пользователей
 users = {
- 'idishki':{1000:1000},
- 'Nikola':{'name':'Nikola','password':'1234','email':'a@a.a','id':1000,'status':'free'}
-         }
+  'idishki':{1000:1000},
+  'Nikola':{'name':'Nikola','password':'1234','email':'a@a.a','id':1000,'status':'free'}
+  }
 log = ['username', 'id', 'activity']
 
 def menu(): # меню
@@ -59,7 +61,7 @@ def add_email(): # предложение привязки почты к акк�
   print("Рекомендуем привязать электронную почту")
   print("С ней у вас будет возможность в случае утери пароля восстановить доступ к аккаунту")
   print(" [«1»] - привязать почту")
-  print(" [«2»] - отказаться")
+  print(" [«2»] - отказаться") 
   a = input('>> ')
   if a == "1":
    email = input("Введите адрес электронной почты: ")
@@ -74,7 +76,7 @@ def add_email(): # предложение привязки почты к акк�
    print("Ладно.")  
    break
 
-def menu2(): # финальное меню
+def end_menu(): # финальное меню
  while True:
   print('[1] - Всё')
   print('[2] - Выйти')
@@ -85,31 +87,31 @@ def menu2(): # финальное меню
 # объеденяющий блок
 def united ():
  while True:
-  a = menu()
-  if a == '1':
+  _menu = menu()
+  if _menu == '1':
    username1 = login() 
    if username1 == '1': continue
    if users[username1]['email'] == 'None': add_email()
    if log[2] == 'active': 
-    a = menu2()
-    if a == '1': exit()
-    elif a == '2': 
-     log[2] = ('inactive')
-     continue
+    _end_menu = end_menu()
+    if _end_menu == '1': exit()
+    elif _end_menu == '2': 
+      log[2] = ('inactive')
+      continue
    else: continue
-  elif a == '2': 
+  elif _end_menu == '2': 
    username1 = registration()
    if users[username1]['email'] == 'None': add_email()
    if log[2] == 'active': 
-    a = menu2()
-    if a == '1': exit()
-    elif a == '2': 
-     log[2] = ('inactive')
-     continue
+    _end_menu = end_menu()
+    if _end_menu == '1': exit()
+    elif _end_menu == '2': 
+      log[2] = ('inactive')
+      continue
   else: continue
 
 # общий алгоритм процессов
-united()
+main = united()
 
 print('system : ', log)
 print('system : ', users)
